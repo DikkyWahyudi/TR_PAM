@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffd6f7f7">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_marginTop="4pt"
+            android:layout_width="110pt"
+            android:layout_height="30sp"
+            android:background="@color/white"
+            android:layout_marginLeft="10dp"
+            android:hint="@string/cari"
+            android:autofillHints="@string/cari"
+            android:textColor="@color/black"
+            android:inputType="text"/>
+
+        <ImageView
+            android:id="@+id/keranjang"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="150pt"
+            android:layout_marginTop="4pt"
+            android:src="@drawable/cart"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="158pt"
+            android:layout_marginTop="1pt"
+            android:background="@drawable/round_text_cart_item"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="10dp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/hamburger"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="170pt"
+            android:layout_marginTop="4pt"
+            android:src="@drawable/hamburger"
+            android:scaleType="fitXY"/>
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/car_view"
+            android:layout_width="match_parent"
+            android:layout_height="207dp"
+            android:layout_marginTop="51dp"
+            app:radius="6dp"
+            app:slideInterval="4000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp"/>
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/car_view"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        <include layout="@layout/toolbar"/>
+    </RelativeLayout>
+</FrameLayout>

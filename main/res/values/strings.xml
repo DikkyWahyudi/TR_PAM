@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Retail NFT</string>
+    <string name="slogan">Marketplace</string>
+    <string name="cari">Search...</string>
+    <string name="home">Beranda</string>
+    <string name="aset">Asset</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="akun">Akun</string>
+    <string name="tentang">About App</string>
+    <string name="kontak">Contact Us</string>
+
+    <string-array name="list_item">
+        <item>Gambar</item>
+        <item>Video</item>
+        <item>Sticker</item>
+    </string-array>
+
+</resources>
