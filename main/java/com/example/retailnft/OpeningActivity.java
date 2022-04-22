@@ -41,6 +41,7 @@ public class OpeningActivity extends AppCompatActivity {
                          R.drawable.header,R.drawable.header_1,R.drawable.header2,R.drawable.header};
     String [] text = {"Image 1","Image 2","Image 3","Image 4","Image 5","Image 6",
                       "Image 7","Image 8","Image 9","Image 10"};
+    String [] price = {"50","40","30","60","45","35","32","27","43","75"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +113,10 @@ public class OpeningActivity extends AppCompatActivity {
                 gridViewAndroid = inflater.inflate(R.layout.grid_layout, null);
                 ImageView imageViewAndroid = gridViewAndroid.findViewById(R.id.grid_image);
                 TextView textViewAndroid = gridViewAndroid.findViewById(R.id.item_name);
+                TextView harga = gridViewAndroid.findViewById(R.id.harga);
                 imageViewAndroid.setImageResource(gridView_Image[i]);
                 textViewAndroid.setText(gridView_Text[i]);
+                harga.setText(price[i]);
             }
             else {
                 gridViewAndroid = convertView;
@@ -130,6 +133,8 @@ public class OpeningActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.menu_home:
+                        Intent intent = new Intent(getApplicationContext(),OpeningActivity.class);
+                        startActivity(intent);
                         Toast.makeText(getApplicationContext(),"Menu Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_akun:
@@ -140,6 +145,12 @@ public class OpeningActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_wishlist:
                         Toast.makeText(getApplicationContext(),"Menu Wishlist", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_kontak:
+                        Toast.makeText(getApplicationContext(),"Menu Kontak", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_about:
+                        Toast.makeText(getApplicationContext(),"Menu Tentang", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         finishAffinity();
@@ -154,5 +165,26 @@ public class OpeningActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OpeningActivity.class);
         startActivity(intent);
     }
+//    public void aset (View v) {
+//        Intent intent = new Intent(this, OpeningActivity.class);
+//        startActivity(intent);
+//    }
+//    public void wishlist (View v) {
+//        Intent intent = new Intent(this, OpeningActivity.class);
+//        startActivity(intent);
+//    }
+//    public void akun (View v) {
+//        Intent intent = new Intent(this, OpeningActivity.class);
+//        startActivity(intent);
+//    }
+//    public void kontak (View v) {
+//        Intent intent = new Intent(this, OpeningActivity.class);
+//        startActivity(intent);
+//    }
+//    public void  tentang(View v) {
+//        Intent intent = new Intent(this, OpeningActivity.class);
+//        startActivity(intent);
+//    }
+
 
 }

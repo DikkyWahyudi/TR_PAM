@@ -46,19 +46,38 @@
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/gallery_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:scrollHorizontally="true"
-                    android:shadowColor="#000"
-                    android:shadowRadius="7.0"
-                    android:text="Price"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                <RelativeLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/harga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:shadowColor="#000"
+                        android:shadowRadius="7.0"
+                        android:text="Price"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
 
+                    <TextView
+                        android:id="@+id/crypto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:shadowColor="#000"
+                        android:shadowRadius="7.0"
+                        android:text="EMP"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:layout_toRightOf="@+id/harga"
+                        android:layout_marginLeft="5dp"/>
+
+                </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
