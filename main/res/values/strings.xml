@@ -8,6 +8,15 @@
     <string name="akun">Akun</string>
     <string name="tentang">Tentang</string>
     <string name="kontak">Kontak</string>
+    <string name="nama_item">Nama item :</string>
+    <string name="harga_item">Harga item :</string>
+    <string name="pemilik_sekarang">Pemilik Sekarang :</string>
+    <string name="pemilik_sebelum">Pemilik Sebelum :</string>
+    <string name="value_nama_item">-</string>
+    <string name="value_harga_item">-</string>
+    <string name="value_owner_now">-</string>
+    <string name="value_owner_before">-</string>
+    <string name="btn_beli">Beli</string>
 
     <string-array name="list_item">
         <item>Gambar</item>

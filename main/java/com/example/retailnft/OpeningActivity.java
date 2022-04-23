@@ -36,18 +36,23 @@ public class OpeningActivity extends AppCompatActivity {
     GridView gridView;
     CarouselView carouselView;
     int [] image = {R.drawable.header,R.drawable.header_1,R.drawable.header2};
-    int [] image_grid = {R.drawable.header,R.drawable.header_1,R.drawable.header2,
+    public static int [] image_grid = {R.drawable.header,R.drawable.header_1,R.drawable.header2,
                          R.drawable.header,R.drawable.header_1,R.drawable.header2,
                          R.drawable.header,R.drawable.header_1,R.drawable.header2,R.drawable.header};
-    String [] text = {"Image 1","Image 2","Image 3","Image 4","Image 5","Image 6",
+    public String [] text = {"Image 1","Image 2","Image 3","Image 4","Image 5","Image 6",
                       "Image 7","Image 8","Image 9","Image 10"};
-    String [] price = {"50","40","30","60","45","35","32","27","43","75"};
+    public String [] price = {"50","40","30","60","45","35","32","27","43","75"};
+    ImageView imageViewAndroid;
+    TextView title,harga;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening);
 
         carouselView = findViewById(R.id.cars_view);
+//        img = findViewById(R.id.grid_image);
+//        item = findViewById(R.id.item_name);
+//        harga = findViewById(R.id.harga);
         carouselView.setPageCount(image.length);
 
         ImageListener imageListener = new ImageListener() {
@@ -68,7 +73,15 @@ public class OpeningActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 for (int i = 0; i < gridView.getChildCount(); i++) {
                     if (position == i) {
-                        Toast.makeText(getApplicationContext(),"Grid View Item : "+text[position]+" Selected", Toast.LENGTH_SHORT).show();
+                        String nama = text[position];
+                        String harga = price[position];
+                        int img = position;
+                        Intent intent = new Intent(getApplicationContext(), ProdukActivity.class);
+                        intent.putExtra("item", nama);
+                        intent.putExtra("harga", harga);
+                        intent.putExtra("img", img);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(),"Grid View Item : "+text[position]+","+price[position]+","+image_grid[position]+" Selected", Toast.LENGTH_SHORT).show();
                         //gridView.getChildAt(position).setBackgroundColor(Color.CYAN);
                     }
                 }
@@ -111,11 +124,11 @@ public class OpeningActivity extends AppCompatActivity {
 
             if (convertView == null) {
                 gridViewAndroid = inflater.inflate(R.layout.grid_layout, null);
-                ImageView imageViewAndroid = gridViewAndroid.findViewById(R.id.grid_image);
-                TextView textViewAndroid = gridViewAndroid.findViewById(R.id.item_name);
-                TextView harga = gridViewAndroid.findViewById(R.id.harga);
+                imageViewAndroid = gridViewAndroid.findViewById(R.id.grid_image);
+                title = gridViewAndroid.findViewById(R.id.item_name);
+                harga = gridViewAndroid.findViewById(R.id.harga);
                 imageViewAndroid.setImageResource(gridView_Image[i]);
-                textViewAndroid.setText(gridView_Text[i]);
+                title.setText(gridView_Text[i]);
                 harga.setText(price[i]);
             }
             else {
@@ -165,26 +178,6 @@ public class OpeningActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OpeningActivity.class);
         startActivity(intent);
     }
-//    public void aset (View v) {
-//        Intent intent = new Intent(this, OpeningActivity.class);
-//        startActivity(intent);
-//    }
-//    public void wishlist (View v) {
-//        Intent intent = new Intent(this, OpeningActivity.class);
-//        startActivity(intent);
-//    }
-//    public void akun (View v) {
-//        Intent intent = new Intent(this, OpeningActivity.class);
-//        startActivity(intent);
-//    }
-//    public void kontak (View v) {
-//        Intent intent = new Intent(this, OpeningActivity.class);
-//        startActivity(intent);
-//    }
-//    public void  tentang(View v) {
-//        Intent intent = new Intent(this, OpeningActivity.class);
-//        startActivity(intent);
-//    }
 
 
 }

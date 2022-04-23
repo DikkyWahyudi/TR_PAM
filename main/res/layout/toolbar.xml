@@ -74,7 +74,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_below="@+id/wishlist"
-            android:layout_marginLeft="222dp"
+            android:layout_marginLeft="212dp"
             android:textSize="12dp"/>
 
         <ImageView

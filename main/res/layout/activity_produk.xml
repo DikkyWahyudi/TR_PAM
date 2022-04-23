@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/fr_lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffd6f7f7">
+
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/mybg"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            android:elevation="25dp">
+
+            <TextView
+                android:id="@+id/app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000"
+                android:textSize="24sp"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:textColor="#ffd6f7f7"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/app_icon"
+                android:layout_toRightOf="@+id/app"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"/>
+
+            <ImageView
+                android:id="@+id/hamburger"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/hamburger"
+                android:layout_toRightOf="@+id/icon"
+                android:layout_marginLeft="180dp"
+                android:onClick="hamburger"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/mybg"
+            android:elevation="25dp">
+
+            <ImageView
+                android:id="@+id/produk_view"
+                android:layout_width="match_parent"
+                android:layout_height="207dp"
+                app:radius="6dp"
+                app:slideInterval="4000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_2"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/mybg">
+
+            <TextView
+                android:id="@+id/teks_nama_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nama_item"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="7dp"/>
+
+            <TextView
+                android:id="@+id/value_nama_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/value_nama_item"
+                android:textColor="@color/black"
+                android:padding="7dp"
+                android:layout_toRightOf="@+id/teks_nama_item"/>
+
+            <TextView
+                android:id="@+id/teks_harga_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/harga_item"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:layout_below="@id/teks_nama_item"/>
+
+            <TextView
+                android:id="@+id/value_harga_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/value_harga_item"
+                android:textColor="@color/black"
+                android:padding="7dp"
+                android:layout_toRightOf="@+id/teks_harga_item"
+                android:layout_below="@+id/value_nama_item"/>
+
+            <TextView
+                android:id="@+id/crypto_emp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EMP"
+                android:textColor="@color/black"
+                android:padding="7dp"
+                android:layout_toRightOf="@+id/value_harga_item"
+                android:layout_below="@+id/value_nama_item"/>
+
+            <TextView
+                android:id="@+id/owner_sekarang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pemilik_sekarang"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:layout_below="@id/teks_harga_item"/>
+
+            <TextView
+                android:id="@+id/value_owner_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/value_owner_now"
+                android:textColor="@color/black"
+                android:padding="7dp"
+                android:layout_toRightOf="@+id/owner_sekarang"
+                android:layout_below="@+id/value_harga_item"/>
+
+            <TextView
+                android:id="@+id/owner_sebelum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pemilik_sebelum"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:layout_below="@id/owner_sekarang"/>
+
+            <TextView
+                android:id="@+id/value_owner_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/value_owner_now"
+                android:textColor="@color/black"
+                android:padding="7dp"
+                android:layout_toRightOf="@+id/owner_sebelum"
+                android:layout_below="@+id/owner_sekarang"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_4"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_below="@+id/rl_3"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/mybg"
+            android:elevation="25dp">
+
+            <EditText
+                android:id="@+id/nama_pembeli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:hint="Masukkan Nama"
+                android:textColorHint="@color/black"/>
+
+            <Button
+                android:id="@+id/btn_beli"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@color/teal_200"
+                android:text="@string/btn_beli"
+                android:textStyle="bold"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="280dp"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        <include layout="@layout/toolbar"/>
+    </RelativeLayout>
+</FrameLayout>
