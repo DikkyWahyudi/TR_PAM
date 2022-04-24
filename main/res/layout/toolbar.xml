@@ -44,7 +44,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="130dp"
             android:src="@drawable/asset"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:onClick="aset"/>
 
         <TextView
             android:id="@+id/assets"
@@ -55,7 +56,8 @@
             android:textStyle="bold"
             android:layout_below="@+id/asset"
             android:layout_marginLeft="128dp"
-            android:textSize="12dp"/>
+            android:textSize="12dp"
+            android:onClick="aset"/>
 
         <ImageView
             android:id="@+id/wishlist"

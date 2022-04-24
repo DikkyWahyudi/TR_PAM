@@ -156,25 +156,7 @@
                 android:layout_toRightOf="@+id/owner_sekarang"
                 android:layout_below="@+id/value_harga_item"/>
 
-            <TextView
-                android:id="@+id/owner_sebelum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pemilik_sebelum"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:padding="7dp"
-                android:layout_below="@id/owner_sekarang"/>
 
-            <TextView
-                android:id="@+id/value_owner_before"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/value_owner_now"
-                android:textColor="@color/black"
-                android:padding="7dp"
-                android:layout_toRightOf="@+id/owner_sebelum"
-                android:layout_below="@+id/owner_sekarang"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_4"
@@ -193,7 +175,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:hint="Masukkan Nama"
-                android:textColorHint="@color/black"/>
+                android:textColorHint="@color/black"
+                android:inputType="text"/>
 
             <Button
                 android:id="@+id/btn_beli"
@@ -203,7 +186,8 @@
                 android:text="@string/btn_beli"
                 android:textStyle="bold"
                 android:layout_marginTop="75dp"
-                android:layout_marginLeft="280dp"/>
+                android:layout_marginLeft="280dp"
+                android:onClick="btn_beli"/>
 
         </RelativeLayout>
     </RelativeLayout>

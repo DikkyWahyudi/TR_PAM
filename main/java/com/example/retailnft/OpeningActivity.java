@@ -50,9 +50,6 @@ public class OpeningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_opening);
 
         carouselView = findViewById(R.id.cars_view);
-//        img = findViewById(R.id.grid_image);
-//        item = findViewById(R.id.item_name);
-//        harga = findViewById(R.id.harga);
         carouselView.setPageCount(image.length);
 
         ImageListener imageListener = new ImageListener() {
@@ -75,6 +72,8 @@ public class OpeningActivity extends AppCompatActivity {
                     if (position == i) {
                         String nama = text[position];
                         String harga = price[position];
+//                        String ps = ;
+//                        String psb = ;
                         int img = position;
                         Intent intent = new Intent(getApplicationContext(), ProdukActivity.class);
                         intent.putExtra("item", nama);
@@ -154,6 +153,8 @@ public class OpeningActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Menu Akun", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_aset:
+                        Intent intent_aset = new Intent(getApplicationContext(),activity_aset.class);
+                        startActivity(intent_aset);
                         Toast.makeText(getApplicationContext(),"Menu Aset", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_wishlist:
@@ -178,6 +179,11 @@ public class OpeningActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OpeningActivity.class);
         startActivity(intent);
     }
+    public void aset (View v) {
+        Intent intent = new Intent(this, activity_aset.class);
+        startActivity(intent);
+    }
+
 
 
 }
