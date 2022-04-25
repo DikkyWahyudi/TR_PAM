@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffd6f7f7">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="370dp"
+            android:layout_height="195dp"
+            android:fitsSystemWindows="true"
+            android:src="@drawable/header"
+            android:layout_marginLeft="12dp"
+            android:scaleType="fitStart"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/kategori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kategori"
+                android:scrollHorizontally="true"
+                android:shadowColor="#000"
+                android:shadowRadius="10.0"
+                android:textColor="#FFF"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+</FrameLayout>
