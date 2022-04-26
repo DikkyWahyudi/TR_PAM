@@ -1,6 +1,7 @@
 package com.example.retailnft;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,12 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -27,12 +32,14 @@ import com.synnapps.carouselview.ImageListener;
 
 public class ActivitySuka extends AppCompatActivity {
     int [] image = {R.drawable.item1,R.drawable.item4,R.drawable.item6};
+    public String [] array_pemilik = {"Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada"};
     CarouselView carouselView;
     DatabaseReference getInstance;
     private RecyclerView mRecycler;
-    FirebaseRecyclerAdapter<ModelProduk,ProdukViewHolder> mAdapter;
+    FirebaseRecyclerAdapter<ModelProduk,SukaViewHolder> mAdapter;
     LinearLayoutManager mManager;
     private FirebaseUser firebaseUser;
+    TextView owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,7 @@ public class ActivitySuka extends AppCompatActivity {
 
         carouselView = findViewById(R.id.cars_view);
         carouselView.setPageCount(image.length);
-
+        owner = findViewById(R.id.pemilik_suka);
         ImageListener imageListener = new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
@@ -66,10 +73,10 @@ public class ActivitySuka extends AppCompatActivity {
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<ModelProduk>()
                 .setQuery(query, ModelProduk.class).build();
 
-        mAdapter = new FirebaseRecyclerAdapter<ModelProduk, ProdukViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<ModelProduk, SukaViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProdukViewHolder holder, int position, @NonNull ModelProduk model) {
-                holder.bindToProduk(model, new View.OnClickListener() {
+            protected void onBindViewHolder(@NonNull SukaViewHolder holder, int position, @NonNull ModelProduk model) {
+                holder.bindToSuka(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
@@ -79,9 +86,9 @@ public class ActivitySuka extends AppCompatActivity {
 
             @NonNull
             @Override
-            public ProdukViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public SukaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                return new ProdukViewHolder(inflater.inflate(R.layout.list_suka,parent,false));
+                return new SukaViewHolder(inflater.inflate(R.layout.list_suka,parent,false));
             }
         };
         mAdapter.notifyDataSetChanged();
@@ -120,24 +127,20 @@ public class ActivitySuka extends AppCompatActivity {
                     case R.id.menu_home:
                         Intent intent_home = new Intent(getApplicationContext(),OpeningActivity.class);
                         startActivity(intent_home);
-                        Toast.makeText(getApplicationContext(),"Menu Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_akun:
                         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         if(firebaseUser != null) {
                             Intent intent_akun = new Intent(getApplicationContext(),AkunActivity.class);
                             startActivity(intent_akun);
-                            //Toast.makeText(getApplicationContext(), "Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Belum Masuk", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getApplicationContext(),"Menu Akun", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_aset:
                         Intent intent_aset = new Intent(getApplicationContext(),activity_aset.class);
                         startActivity(intent_aset);
-                        Toast.makeText(getApplicationContext(),"Menu Aset", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_wishlist:
                         Intent intent_suka = new Intent(getApplicationContext(),ActivitySuka.class);
@@ -154,5 +157,28 @@ public class ActivitySuka extends AppCompatActivity {
             }
         });
         pop.show();
+    }
+    public void home (View v) {
+        Intent intent = new Intent(this, OpeningActivity.class);
+        startActivity(intent);
+    }
+    public void asset (View v) {
+        Intent intent = new Intent(this, activity_aset.class);
+        startActivity(intent);
+    }
+    public void like (View v) {
+        Intent intent = new Intent(this, ActivitySuka.class);
+        startActivity(intent);
+    }
+    public void akun (View v) {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null) {
+            Intent intent = new Intent(this, AkunActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this, "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

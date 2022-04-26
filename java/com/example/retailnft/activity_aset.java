@@ -62,7 +62,6 @@ public class activity_aset extends AppCompatActivity {
             }
         };
         FirebaseDatabase mFirebaseInstance = FirebaseDatabase.getInstance();
-        //getReference = FirebaseDatabase.getInstance().getReference("item");
         getInstance = mFirebaseInstance.getReference("item");
         carouselView.setImageListener(imageListener);
 
@@ -142,7 +141,7 @@ public class activity_aset extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), "Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Belum Masuk", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case R.id.menu_aset:
@@ -164,5 +163,28 @@ public class activity_aset extends AppCompatActivity {
             }
         });
         pop.show();
+    }
+    public void home (View v) {
+        Intent intent = new Intent(this, OpeningActivity.class);
+        startActivity(intent);
+    }
+    public void asset (View v) {
+        Intent intent = new Intent(this, activity_aset.class);
+        startActivity(intent);
+    }
+    public void like (View v) {
+        Intent intent = new Intent(this, ActivitySuka.class);
+        startActivity(intent);
+    }
+    public void akun (View v) {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null) {
+            Intent intent = new Intent(this, AkunActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this, "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

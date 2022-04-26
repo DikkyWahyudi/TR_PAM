@@ -1,5 +1,7 @@
 package com.example.retailnft;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +31,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -44,9 +52,12 @@ public class OpeningActivity extends AppCompatActivity {
     public String [] text = {"Beauty Snow","Afternoon Beach","Rain Forest","Sunset Lake","Invoguration","Black Dragon",
                       "Child Snow","Snow Village","Shopping Day","Old Man"};
     public String [] price = {"50","40","30","60","45","35","32","27","43","75"};
+    public String [] array_pemilik = {"Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada"};
     ImageView imageViewAndroid;
-    TextView title,harga;
+    TextView title,harga,pemilik;
     private FirebaseUser firebaseUser;
+    GridViewCustom gridViewCustom;
+    String [] key = {"-","-","-","-","-","-","-","-","-","-"};;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +65,44 @@ public class OpeningActivity extends AppCompatActivity {
 
         carouselView = findViewById(R.id.cars_view);
         carouselView.setPageCount(image.length);
+
+        FirebaseDatabase mFirebaseInstance = FirebaseDatabase.getInstance();
+        DatabaseReference getInstance = mFirebaseInstance.getReference("item");
+
+        getInstance.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                //Log.e("tes", "onChildAdded: "+dataSnapshot.toString());
+                ModelProduk mp = dataSnapshot.getValue(ModelProduk.class);
+                //Log.e("aa", "onChildAdded: "+mp.getPemilik_sekarang());
+                int index = mp.getImg_indeks();
+                key [index] = dataSnapshot.getKey();
+
+                array_pemilik[index] = mp.getPemilik_sekarang();
+                gridViewCustom.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         ImageListener imageListener = new ImageListener() {
             @Override
@@ -64,7 +113,7 @@ public class OpeningActivity extends AppCompatActivity {
 
         carouselView.setImageListener(imageListener);
 
-        GridViewCustom gridViewCustom = new GridViewCustom(OpeningActivity.this, image_grid,text);
+         gridViewCustom = new GridViewCustom(OpeningActivity.this, image_grid,text);
         gridView = findViewById(R.id.gridView);
         gridView.setAdapter(gridViewCustom);
 
@@ -75,11 +124,15 @@ public class OpeningActivity extends AppCompatActivity {
                     if (position == i) {
                         String nama = text[position];
                         String harga = price[position];
+                        String pemilik = array_pemilik[position];
+                        String keys = key[position];
                         int img = position;
                         Intent intent = new Intent(getApplicationContext(), ProdukActivity.class);
                         intent.putExtra("item", nama);
                         intent.putExtra("harga", harga);
                         intent.putExtra("img", img);
+                        intent.putExtra("own", pemilik);
+                        intent.putExtra("key", keys);
                         startActivity(intent);
                     }
                 }
@@ -128,6 +181,8 @@ public class OpeningActivity extends AppCompatActivity {
                 imageViewAndroid.setImageResource(gridView_Image[i]);
                 title.setText(gridView_Text[i]);
                 harga.setText(price[i]);
+                pemilik = gridViewAndroid.findViewById(R.id.pemilik_item);
+                pemilik.setText(array_pemilik[i]);
             }
             else {
                 gridViewAndroid = convertView;
@@ -152,10 +207,9 @@ public class OpeningActivity extends AppCompatActivity {
                         if(firebaseUser != null) {
                             Intent intent_akun = new Intent(getApplicationContext(),AkunActivity.class);
                             startActivity(intent_akun);
-                            //Toast.makeText(getApplicationContext(), "Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Belum Masuk", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case R.id.menu_aset:
@@ -179,23 +233,29 @@ public class OpeningActivity extends AppCompatActivity {
         pop.show();
     }
 
-    public void beranda (View v) {
+    public void home (View v) {
         Intent intent = new Intent(this, OpeningActivity.class);
         startActivity(intent);
     }
-    public void aset (View v) {
+    public void asset (View v) {
         Intent intent = new Intent(this, activity_aset.class);
         startActivity(intent);
     }
-    public void suka (View v) {
+    public void like (View v) {
         Intent intent = new Intent(this, ActivitySuka.class);
         startActivity(intent);
     }
     public void akun (View v) {
-        Intent intent = new Intent(this, AkunActivity.class);
-        startActivity(intent);
-    }
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null) {
+            Intent intent = new Intent(this, AkunActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this, "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
+        }
 
+    }
 
 
 }
