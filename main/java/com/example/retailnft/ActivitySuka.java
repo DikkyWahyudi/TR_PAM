@@ -1,60 +1,54 @@
 package com.example.retailnft;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class activity_aset extends AppCompatActivity {
-
+public class ActivitySuka extends AppCompatActivity {
     int [] image = {R.drawable.item1,R.drawable.item4,R.drawable.item6};
+    public String [] array_pemilik = {"Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada","Tidak Ada"};
     CarouselView carouselView;
     DatabaseReference getInstance;
     private RecyclerView mRecycler;
-    FirebaseRecyclerAdapter<ModelProduk,ProdukViewHolder> mAdapter;
+    FirebaseRecyclerAdapter<ModelProduk,SukaViewHolder> mAdapter;
     LinearLayoutManager mManager;
     private FirebaseUser firebaseUser;
-
+    TextView owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aset);
+        setContentView(R.layout.activity_suka);
 
         carouselView = findViewById(R.id.cars_view);
         carouselView.setPageCount(image.length);
-
+        owner = findViewById(R.id.pemilik_suka);
         ImageListener imageListener = new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
@@ -62,10 +56,11 @@ public class activity_aset extends AppCompatActivity {
             }
         };
         FirebaseDatabase mFirebaseInstance = FirebaseDatabase.getInstance();
-        getInstance = mFirebaseInstance.getReference("item");
+        //getReference = FirebaseDatabase.getInstance().getReference("item");
+        getInstance = mFirebaseInstance.getReference("suka");
         carouselView.setImageListener(imageListener);
 
-        mRecycler = findViewById(R.id.list_aset);
+        mRecycler = findViewById(R.id.list_suka);
         mRecycler.setHasFixedSize(true);
 
         mManager = new LinearLayoutManager(this);
@@ -78,10 +73,10 @@ public class activity_aset extends AppCompatActivity {
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<ModelProduk>()
                 .setQuery(query, ModelProduk.class).build();
 
-        mAdapter = new FirebaseRecyclerAdapter<ModelProduk, ProdukViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<ModelProduk, SukaViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProdukViewHolder holder, int position, @NonNull ModelProduk model) {
-                holder.bindToProduk(model, new View.OnClickListener() {
+            protected void onBindViewHolder(@NonNull SukaViewHolder holder, int position, @NonNull ModelProduk model) {
+                holder.bindToSuka(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
@@ -91,9 +86,9 @@ public class activity_aset extends AppCompatActivity {
 
             @NonNull
             @Override
-            public ProdukViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public SukaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                return new ProdukViewHolder(inflater.inflate(R.layout.list_aset,parent,false));
+                return new SukaViewHolder(inflater.inflate(R.layout.list_suka,parent,false));
             }
         };
         mAdapter.notifyDataSetChanged();
@@ -138,7 +133,6 @@ public class activity_aset extends AppCompatActivity {
                         if(firebaseUser != null) {
                             Intent intent_akun = new Intent(getApplicationContext(),AkunActivity.class);
                             startActivity(intent_akun);
-                            //Toast.makeText(getApplicationContext(), "Masuk Akun", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Belum Masuk Akun", Toast.LENGTH_SHORT).show();
