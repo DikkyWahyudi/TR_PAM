@@ -76,6 +76,24 @@
                 app:slideInterval="4000"
                 app:strokeColor="#FF777777"
                 app:strokeWidth="1dp"/>
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:shadowColor="#000"
+                android:shadowRadius="7.0"
+                android:text="Trending"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                />
+
+
         </RelativeLayout>
 
         <RelativeLayout

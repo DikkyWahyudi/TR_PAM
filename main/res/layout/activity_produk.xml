@@ -71,11 +71,7 @@
             <ImageView
                 android:id="@+id/produk_view"
                 android:layout_width="match_parent"
-                android:layout_height="207dp"
-                app:radius="6dp"
-                app:slideInterval="4000"
-                app:strokeColor="#FF777777"
-                app:strokeWidth="1dp"/>
+                android:layout_height="207dp"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -188,6 +184,18 @@
                 android:layout_marginTop="75dp"
                 android:layout_marginLeft="280dp"
                 android:onClick="btn_beli"/>
+
+            <Button
+                android:id="@+id/btn_suka"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@color/purple_500"
+                android:text="Suka"
+                android:textStyle="bold"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="10dp"
+                android:onClick="btn_suka"
+                android:enabled="false"/>
 
         </RelativeLayout>
     </RelativeLayout>

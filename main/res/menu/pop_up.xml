@@ -18,10 +18,7 @@
         android:title="@string/wishlist"
         android:icon="@drawable/wishlist"/>
     <item
-        android:id="@+id/menu_kontak"
-        android:title="@string/kontak" />
-    <item
         android:id="@+id/menu_about"
-        android:title="@string/tentang"/>
+        android:title="@string/login"/>
 
 </menu>
