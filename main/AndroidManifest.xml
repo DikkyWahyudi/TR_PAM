@@ -10,16 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
+            android:name=".ActivitySuka"
+            android:exported="false" />
+        <activity
+            android:name=".AkunActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProdukActivity"
             android:exported="false" />
         <activity
             android:name=".activity_aset"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".OpeningActivity"
             android:exported="false" />
         <activity
-            android:name=".OpeningActivity"
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -33,6 +42,7 @@
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
