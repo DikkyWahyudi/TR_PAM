@@ -1,2 +1,2 @@
 # TR_PAM
-Project dibuat untuk memenuhi Tugas Rancang Matakuliah Pengembangan Aplikasi Mobile, untuk pak ocsa sebelumnya kami minta maaf pak karena penguploadan file di github hanya satu orang dan kami berbagi file lewat media lain. untuk melihat code appnya bisa langsung ke folder main atau folder java dan res yang telah diupdate pak, tetapi untuk file satu project jangan didownload karena belum terupdate dan pada saat ingin mengupdate tidak bisa dikarenakan file yang diupdate terlalu besar
+Project dibuat untuk memenuhi Tugas Rancang Matakuliah Pengembangan Aplikasi Mobile, Dosen Pengampu Pratyaksa Ocsa Saian
